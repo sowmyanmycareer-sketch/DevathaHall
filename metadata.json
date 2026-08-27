@@ -1,0 +1,6 @@
+{
+  "name": "Devatha Hall Clothing Center",
+  "description": "Premier clothing store and boutique in Kolar, Karnataka. Online catalog, order management, secure checkout, and instant inventory handling.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
