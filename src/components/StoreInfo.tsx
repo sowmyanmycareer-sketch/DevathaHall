@@ -21,41 +21,41 @@ interface StoreInfoProps {
 
 export const StoreInfo: React.FC<StoreInfoProps> = ({ onClose }) => {
   return (
-    <div className="bg-white text-[#2C1E1A] p-6 sm:p-8 rounded-xs border border-[#F0CFC3] shadow-xs max-w-5xl mx-auto space-y-8 my-6">
+    <div className="bg-white text-[#2C1E1A] p-4 sm:p-6 md:p-8 rounded-xs border border-[#F0CFC3] shadow-xs max-w-5xl mx-auto space-y-6 sm:space-y-8 my-4 sm:my-6">
       
       {/* Header section */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#F0CFC3] pb-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 sm:gap-4 border-b border-[#F0CFC3] pb-4 sm:pb-6">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="bg-[#E06B52] text-white font-bold text-[9px] px-2.5 py-0.5 rounded-xs uppercase tracking-widest">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="bg-[#E06B52] text-white font-bold text-[9px] px-2 py-0.5 rounded-xs uppercase tracking-wider">
               Landmark Store in Kolar
             </span>
-            <span className="text-xs text-emerald-700 font-semibold flex items-center gap-1">
+            <span className="text-[11px] sm:text-xs text-emerald-700 font-semibold flex items-center gap-1">
               <Clock className="w-3.5 h-3.5" />
               {STORE_DETAILS.statusText}
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#2C1E1A] mt-2 tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-[#2C1E1A] mt-1.5 sm:mt-2 tracking-tight">
             DEVATHA HALL CLOTHING CENTER
           </h2>
-          <p className="text-xs sm:text-sm text-[#7A645D] mt-1">
+          <p className="text-xs sm:text-sm text-[#7A645D] mt-0.5">
             Premier clothing showroom, silk saree destination, and boutique in Kolar, Karnataka.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 w-full md:w-auto">
           <a
             href={`tel:${STORE_DETAILS.phone.replace(/\s+/g, '')}`}
-            className="px-4 py-2.5 bg-[#E06B52] hover:bg-[#C8563E] text-white rounded-xs text-xs font-bold flex items-center gap-2 shadow-xs transition-all uppercase tracking-widest cursor-pointer"
+            className="flex-1 md:flex-none px-3.5 sm:px-4 py-2.5 bg-[#E06B52] hover:bg-[#C8563E] text-white rounded-xs text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition-all uppercase tracking-wider cursor-pointer"
           >
-            <Phone className="w-4 h-4" />
-            Call: {STORE_DETAILS.phone}
+            <Phone className="w-3.5 h-3.5 text-white" />
+            <span>Call: {STORE_DETAILS.phone}</span>
           </a>
 
           {onClose && (
             <button
               onClick={onClose}
-              className="px-3 py-2 bg-[#FFF0E8] hover:bg-[#FFE5D9] text-[#2C1E1A] text-xs font-bold rounded-xs border border-[#F0CFC3] transition-colors cursor-pointer"
+              className="px-3 py-2.5 bg-[#FFF0E8] hover:bg-[#FFE5D9] text-[#2C1E1A] text-[11px] sm:text-xs font-bold rounded-xs border border-[#F0CFC3] transition-colors cursor-pointer"
             >
               Close
             </button>

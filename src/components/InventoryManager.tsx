@@ -276,35 +276,35 @@ export const InventoryManager: React.FC<InventoryManagerProps> = ({
       </div>
 
       {/* Navigation Tabs */}
-      <div className="max-w-7xl mx-auto flex items-center gap-2 border-b border-[#F0CFC3] pb-2">
+      <div className="max-w-7xl mx-auto flex items-center gap-2 border-b border-[#F0CFC3] pb-2 overflow-x-auto scrollbar-none" style={{ WebkitOverflowScrolling: 'touch' }}>
         <button
           onClick={() => setActiveTab('inventory')}
-          className={`px-4 py-2 rounded-xs text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
+          className={`px-3.5 sm:px-4 py-2 rounded-xs text-[11px] sm:text-xs font-bold flex items-center gap-1.5 sm:gap-2 transition-all cursor-pointer whitespace-nowrap shrink-0 ${
             activeTab === 'inventory' ? 'bg-[#E06B52] text-white shadow-xs' : 'bg-white text-[#2C1E1A] hover:bg-[#FFF0E8] border border-[#F0CFC3]'
           }`}
         >
-          <Package className="w-4 h-4" />
+          <Package className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           Live Stock Table ({products.length})
         </button>
 
         <button
           onClick={() => setActiveTab('orders')}
-          className={`px-4 py-2 rounded-xs text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
+          className={`px-3.5 sm:px-4 py-2 rounded-xs text-[11px] sm:text-xs font-bold flex items-center gap-1.5 sm:gap-2 transition-all cursor-pointer whitespace-nowrap shrink-0 ${
             activeTab === 'orders' ? 'bg-[#E06B52] text-white shadow-xs' : 'bg-white text-[#2C1E1A] hover:bg-[#FFF0E8] border border-[#F0CFC3]'
           }`}
         >
-          <ShoppingBag className="w-4 h-4" />
-          Customer Online Orders ({recentOrders.length})
+          <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          Online Orders ({recentOrders.length})
         </button>
 
         <button
           onClick={() => setActiveTab('add')}
-          className={`px-4 py-2 rounded-xs text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
+          className={`px-3.5 sm:px-4 py-2 rounded-xs text-[11px] sm:text-xs font-bold flex items-center gap-1.5 sm:gap-2 transition-all cursor-pointer whitespace-nowrap shrink-0 ${
             activeTab === 'add' ? 'bg-[#E06B52] text-white shadow-xs' : 'bg-white text-[#2C1E1A] hover:bg-[#FFF0E8] border border-[#F0CFC3]'
           }`}
         >
-          <Plus className="w-4 h-4" />
-          Add New Clothing Item
+          <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          Add New Saree / Item
         </button>
       </div>
 
@@ -362,7 +362,7 @@ export const InventoryManager: React.FC<InventoryManagerProps> = ({
                           <img
                             src={p.images[0]}
                             alt={p.name}
-                            className="w-12 h-14 object-cover rounded-xs bg-stone-100 border border-stone-200 shrink-0"
+                            className="w-12 h-14 object-cover object-top rounded-xs bg-stone-100 border border-stone-200 shrink-0"
                             referrerPolicy="no-referrer"
                           />
                           <span className="font-medium text-[#1A1A1A] max-w-xs line-clamp-2">

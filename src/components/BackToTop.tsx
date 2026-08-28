@@ -34,9 +34,9 @@ export const BackToTop: React.FC = () => {
       id="back-to-top-btn"
       aria-label="Back to top"
       title="Back to Top"
-      className="fixed bottom-6 right-6 z-40 p-3 sm:p-3.5 bg-[#E06B52] text-white hover:bg-[#C8563E] active:scale-95 rounded-full shadow-lg border border-white/20 transition-all duration-300 flex items-center justify-center cursor-pointer group hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#E06B52] focus:ring-offset-2"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 p-2.5 sm:p-3.5 bg-[#E06B52] text-white hover:bg-[#C8563E] active:scale-95 rounded-full shadow-lg border border-white/20 transition-all duration-300 flex items-center justify-center cursor-pointer group hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#E06B52] focus:ring-offset-2"
     >
-      <ArrowUp className="w-5 h-5 transition-transform duration-200 group-hover:-translate-y-0.5" />
+      <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:-translate-y-0.5" />
     </button>
   );
 };

@@ -160,37 +160,46 @@ export default function App() {
           <Hero
             onExploreClick={() => {
               const catalogSection = document.getElementById('catalog-grid');
-              catalogSection?.scrollIntoView({ behavior: 'smooth' });
+              if (catalogSection) {
+                const header = document.querySelector('header');
+                const headerHeight = header ? header.offsetHeight : 160;
+                const elementTop = catalogSection.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = Math.max(0, elementTop - headerHeight - 20);
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
             }}
             onOpenStoreInfo={() => setIsStoreInfoOpen(true)}
           />
 
           {/* Catalog Section */}
-          <div id="catalog-grid" className="max-w-7xl mx-auto px-4 space-y-6">
+          <div id="catalog-grid" className="scroll-mt-44 sm:scroll-mt-48 md:scroll-mt-52 max-w-7xl mx-auto px-3 sm:px-4 space-y-4 sm:space-y-6 pt-1">
             
             {/* Catalog Controls & Filter Bar */}
-            <div className="bg-white p-4 sm:p-5 rounded-xs border border-[#F0CFC3] shadow-xs space-y-4">
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="bg-white p-3 sm:p-5 rounded-xs border border-[#F0CFC3] shadow-xs space-y-3 sm:space-y-4">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-serif font-medium text-[#2C1E1A] tracking-tight">
+                  <h2 className="text-lg sm:text-2xl font-serif font-medium text-[#2C1E1A] tracking-tight">
                     {activeCategory === 'All' ? 'Curated Collection' : activeCategory}
                   </h2>
-                  <p className="text-[11px] sm:text-xs text-[#7A645D] uppercase tracking-widest mt-0.5">
+                  <p className="text-[10px] sm:text-xs text-[#7A645D] uppercase tracking-wider mt-0.5">
                     Displaying {filteredProducts.length} items
                   </p>
                 </div>
 
                 {/* Filters Controls */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full md:w-auto text-xs">
+                <div className="flex flex-row items-center gap-2 sm:gap-3 w-full md:w-auto text-xs">
                   {/* Sort Selector */}
-                  <div className="flex items-center justify-between sm:justify-start gap-2 bg-[#FFF7F4] px-3 py-2 rounded-xs border border-[#F0CFC3] w-full sm:w-auto">
-                    <span className="text-[#7A645D] font-medium uppercase text-[10px] tracking-widest shrink-0">Sort:</span>
+                  <div className="flex-1 sm:flex-none flex items-center justify-between sm:justify-start gap-1.5 sm:gap-2 bg-[#FFF7F4] px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xs border border-[#F0CFC3]">
+                    <span className="text-[#7A645D] font-medium uppercase text-[9px] sm:text-[10px] tracking-wider shrink-0">Sort:</span>
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value as any)}
-                      className="bg-transparent text-[#2C1E1A] focus:outline-none font-medium cursor-pointer text-xs"
+                      className="bg-transparent text-[#2C1E1A] focus:outline-none font-medium cursor-pointer text-[11px] sm:text-xs w-full"
                     >
-                      <option value="featured">Featured & Popular</option>
+                      <option value="featured">Featured</option>
                       <option value="price_low">Price: Low to High</option>
                       <option value="price_high">Price: High to Low</option>
                       <option value="rating">Highest Rated</option>
@@ -198,23 +207,23 @@ export default function App() {
                   </div>
 
                   {/* Stock Toggle */}
-                  <label className="flex items-center gap-2 bg-[#FFF7F4] px-3 py-2 rounded-xs border border-[#F0CFC3] cursor-pointer text-[#2C1E1A] text-xs w-full sm:w-auto">
+                  <label className="flex items-center gap-1.5 sm:gap-2 bg-[#FFF7F4] px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xs border border-[#F0CFC3] cursor-pointer text-[#2C1E1A] text-[11px] sm:text-xs shrink-0">
                     <input
                       type="checkbox"
                       checked={onlyInStock}
                       onChange={(e) => setOnlyInStock(e.target.checked)}
                       className="accent-[#E06B52] rounded-xs"
                     />
-                    <span className="text-xs font-medium">In Stock Only</span>
+                    <span className="font-medium whitespace-nowrap">In Stock</span>
                   </label>
                 </div>
               </div>
 
               {/* Price Range Slider */}
-              <div className="pt-3 border-t border-[#F5E2DA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
-                  <span className="text-[#7A645D] text-[10px] sm:text-xs uppercase tracking-widest shrink-0">
-                    Max Price: <strong className="text-[#C8563E] font-semibold">₹{priceRange.toLocaleString('en-IN')}</strong>
+              <div className="pt-2.5 sm:pt-3 border-t border-[#F5E2DA] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3 text-xs">
+                <div className="flex items-center justify-between sm:justify-start gap-2 sm:gap-3 w-full sm:w-auto">
+                  <span className="text-[#7A645D] text-[10px] sm:text-xs uppercase tracking-wider shrink-0">
+                    Max: <strong className="text-[#C8563E] font-semibold">₹{priceRange.toLocaleString('en-IN')}</strong>
                   </span>
                   <input
                     type="range"
@@ -223,29 +232,29 @@ export default function App() {
                     step={1000}
                     value={priceRange}
                     onChange={(e) => setPriceRange(Number(e.target.value))}
-                    className="w-full sm:w-48 accent-[#E06B52] cursor-pointer"
+                    className="flex-1 sm:w-48 accent-[#E06B52] cursor-pointer"
                   />
                 </div>
 
                 {wishlistIds.length > 0 && (
                   <button
                     onClick={() => setActiveView('wishlist')}
-                    className="text-xs font-medium bg-[#FFE8DE] hover:bg-[#FFE5D9] text-[#C8563E] px-3 py-1 rounded-xs border border-[#F8CBB8] self-start sm:self-auto cursor-pointer flex items-center gap-1.5 transition-colors"
+                    className="text-[11px] sm:text-xs font-medium bg-[#FFE8DE] hover:bg-[#FFE5D9] text-[#C8563E] px-2.5 sm:px-3 py-1 rounded-xs border border-[#F8CBB8] self-start sm:self-auto cursor-pointer flex items-center gap-1.5 transition-colors"
                   >
                     <Heart className="w-3.5 h-3.5 fill-[#E06B52]" />
-                    <span>View {wishlistIds.length} Saved Items →</span>
+                    <span>View {wishlistIds.length} Saved →</span>
                   </button>
                 )}
               </div>
             </div>
 
-            {/* Product Cards Grid */}
+            {/* Product Cards Grid - 2 columns on mobile for superior e-commerce UX */}
             {filteredProducts.length === 0 ? (
-              <div className="bg-white rounded-xs p-12 text-center border border-[#F0CFC3] space-y-3 shadow-xs">
-                <ShoppingBag className="w-10 h-10 text-[#D8B4A8] mx-auto" />
-                <h3 className="text-xl font-serif text-[#2C1E1A]">No products found</h3>
+              <div className="bg-white rounded-xs p-8 sm:p-12 text-center border border-[#F0CFC3] space-y-3 shadow-xs">
+                <ShoppingBag className="w-8 h-8 sm:w-10 sm:h-10 text-[#D8B4A8] mx-auto" />
+                <h3 className="text-lg sm:text-xl font-serif text-[#2C1E1A]">No products found</h3>
                 <p className="text-xs text-[#7A645D] max-w-sm mx-auto">
-                  Try clearing your search query or adjusting the price range filter.
+                  Try clearing your search query or adjusting the price filter.
                 </p>
                 <button
                   onClick={() => {
@@ -254,13 +263,13 @@ export default function App() {
                     setPriceRange(30000);
                     setOnlyInStock(false);
                   }}
-                  className="px-6 py-2.5 bg-[#E06B52] text-white text-xs font-medium uppercase tracking-widest hover:bg-[#C8563E] transition-colors rounded-xs shadow-2xs cursor-pointer"
+                  className="px-5 py-2.5 bg-[#E06B52] text-white text-xs font-medium uppercase tracking-wider hover:bg-[#C8563E] transition-colors rounded-xs shadow-2xs cursor-pointer"
                 >
                   Reset Filters
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5 sm:gap-6">
                 {filteredProducts.map((product) => (
                   <ProductCard
                     key={product.id}
